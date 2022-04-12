@@ -16,6 +16,20 @@ const  App = () => {
     setSelectedImage(target.files[0])
   }
 
+  const onUploadPicture = async () => {
+    const blob = new Blob([selectedImage as BlobPart], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    const formData = new FormData();
+    formData.append("file", blob);
+
+    const res = await fetch("http://urlhere", {
+        method: "POST",
+        body: formData,
+    })
+    
+  }
+
   useEffect(() => {
     if (!selectedImage) {
         setPreview(undefined)
@@ -35,6 +49,7 @@ const  App = () => {
         Hello Most Wanted World
        <ImageInput onSelectImage={onSelectImage}/>
        {selectedImage && <ImagePreview img={preview} />}
+       <button onClick={onUploadPicture}>upload</button>
       </header>
     </div>
   );
