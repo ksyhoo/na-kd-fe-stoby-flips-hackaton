@@ -1,0 +1,6 @@
+.child {
+  position: absolute;
+}
+.father {
+  position: relative;
+}
