@@ -37,10 +37,7 @@ const  App = () => {
         context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
         let imgSrc = '';
         imgSrc = window.URL.createObjectURL(target.files[0]);
-          const img = new Image();
-        img.onload = function() {
-          context.drawImage(img, 0, 0);
-        }
+        const img = new Image();
         img.src = imgSrc;
         setCanvasImage(img)
       }
@@ -50,40 +47,33 @@ const  App = () => {
 
   const onUploadPicture = async () => {
     setShowImage(false)
+    const canvas = canvasRef.current
+    const context = canvas?.getContext('2d')
+
     const blob = new Blob([selectedImage as BlobPart], {
       type: 'image/png',
     });
-
+    
     const formData = new FormData();
     formData.append("file", blob);
-
-    const request = await fetch("http://most-wanted-api.free.beeceptor.com", {
-        method: "POST",
-        body: formData,
+    const request = await fetch("http://35.195.79.175/MostWanted", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': '*/*',
+      'Access-Control-Allow-Origin': '*'
+    },
+    body: formData
     })
-
     const coordinates = await request.json()
     setCoordinates(coordinates)
-    if (!!coordinates) {
+    if (!!coordinates && !!canvasImage) {
+
       setShowImage(true)
+      context?.drawImage(canvasImage, 10, 10, 100, 100)
     }
+
   }
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas?.getContext('2d')
-    if (canvasImage) {
-
-    //Fix those values to one from API
-    //drawImage(image: CanvasImageSource, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void;
-    //sx sy  start crop from left/top of the original  image
-    //sw, sh  crop the w x h pixel area from the original image
-    //dx , dy place result of the image at top left of canvas
-    //dw, dh width and  height of result image
-
-      context?.drawImage(canvasImage, 20, 20, 120, 120, 0, 0, 100, 100);
-    }
-  }, [canvasImage])
 
   return (
     <div className="App">
