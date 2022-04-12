@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './App.css';
+import ErrorMessage from './Components/ErrorMessage';
 import ImageInput from './Components/ImageInput/index';
 import Poster from './Components/Poster';
 
@@ -22,6 +23,7 @@ const  App = () => {
   const [showImage, setShowImage] = useState<boolean>(false)
   const [canvasImage, setCanvasImage] = useState<CanvasImageSource>()
   const [selectedImage, setSelectedImage] = useState<File>()
+  const [error, setError] = useState<boolean>(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const  readImage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +31,7 @@ const  App = () => {
     const { target } = event;
     if (!target.files) {
       setSelectedImage(undefined)
+      setError(true);
       return
     }
     
@@ -87,6 +90,7 @@ const  App = () => {
             Hello Most Wanted World
             <ImageInput onSelectImage={readImage}/>
             <button onClick={onUploadPicture}>upload</button>
+            {error && <ErrorMessage />}
           </header>)
        }
     </div>
