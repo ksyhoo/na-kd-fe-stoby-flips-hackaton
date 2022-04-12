@@ -18,7 +18,7 @@ const  App = () => {
 
   const onUploadPicture = async () => {
     const blob = new Blob([selectedImage as BlobPart], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      type: 'image/png',
     });
     const formData = new FormData();
     formData.append("file", blob);
