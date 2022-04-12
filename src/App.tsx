@@ -23,11 +23,12 @@ const  App = () => {
     const formData = new FormData();
     formData.append("file", blob);
 
-    const res = await fetch("http://urlhere", {
+    const request = await fetch("http://most-wanted-api.free.beeceptor.com", {
         method: "POST",
         body: formData,
     })
-    
+
+    const coordinates = await request.json()
   }
 
   useEffect(() => {
