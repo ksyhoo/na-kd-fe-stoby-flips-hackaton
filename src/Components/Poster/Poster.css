@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "RioGrande";
+  src: local("RioGrande"), url(./fonts/RioGrande.ttf) format("woff");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.layout {
+  /*background-color: #63411e;*/
+  width: 100%;
+  height: 100vh;
+  font-family: "RioGrande";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  filter: sepia(0.5);
+  background: #704214;
+  background: linear-gradient(to bottom, #704214 0%, #613305 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #704214),
+    color-stop(100%, #613305)
+  );
+  background: -webkit-linear-gradient(top, #704214 0%, #613305 100%);
+  background: -moz-linear-gradient(top, #704214 0%, #613305 100%);
+  background: -o-linear-gradient(top, #704214 0%, #613305 100%);
+  background: -ms-linear-gradient(top, #704214 0%, #613305 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#704214', endColorstr='#613305', GradientType=0);
+  box-shadow: inset 0 1px 0 #7f5123;
+  -webkit-box-shadow: inset 0 1px 0 #7f5123;
+  -moz-box-shadow: inset 0 1px 0 #7f5123;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  font-size: 120px;
+  border-bottom: 8px solid;
+  margin: 0;
+  filter: sepia(1);
+  display: flex;
+  align-items: center;
+}
+h1 span {
+  font-size: 50px;
+}
+p {
+  font-size: 70px;
+}
+h2 {
+  font-size: 40px;
+}
+h2 > span {
+  font-size: 20px;
+}
+img {
+  max-width: 375px;
+}
+.bottom {
+  margin-bottom: 20px;
+}
