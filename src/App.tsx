@@ -80,11 +80,18 @@ const App = () => {
           <canvas ref={canvasRef} width={750} height={'100%'} />
         </Poster>
       ) : (
-        <header className="App-header">
-          Hello Most Wanted World
-          <ImageInput onSelectImage={readImage} />
-          <button onClick={onUploadPicture}>upload</button>
-        </header>
+        <>
+          <header className="App-header">
+            <h2>We need your help in locating a major felon!</h2>
+            <p className="text">Advanced AI and machine learn are our only hope,</p>
+            <p className="text">Please provide us with a picture and we will do the rest....</p>
+
+            <div className="padding">
+              <ImageInput onSelectImage={readImage} />
+            </div>
+            <button onClick={onUploadPicture}>upload</button>
+          </header>
+        </>
       )}
     </div>
   );
