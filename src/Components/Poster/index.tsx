@@ -2,10 +2,10 @@ import React from 'react'
 import './Poster.css';
 
 type Props = {
-    img: string | undefined
+    img?: string | undefined
 }
 
-const Poster: React.FC<Props> = ({ img }) => {
+const Poster: React.FC<Props> = ({ img, children }) => {
     const randomNum = ():string => {
         const random = (Math.floor(Math.random() * 10)*1000000)
         
@@ -21,7 +21,8 @@ const Poster: React.FC<Props> = ({ img }) => {
             <div className='column dead_alive'>
                 <p>DEAD</p> <p>OR</p> <p>ALIVE</p>
             </div>
-            <img src={img} className="image" />
+            <div className="image">{children}</div>
+            {/* <img src={img} className="image" /> */}
             <div className='column'>
                 <p>REWARD</p>
                 <p>{reward}</p>

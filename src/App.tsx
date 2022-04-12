@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './App.css';
 import ImageInput from './Components/ImageInput/index';
+import Poster from './Components/Poster';
 
 type PropsLocation = {
   Poster:Coordinates
@@ -57,19 +58,20 @@ const  App = () => {
     const formData = new FormData();
     formData.append("file", blob);
     const request = await fetch("http://35.195.79.175/MostWanted", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Accept': '*/*',
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: formData
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*/*',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: formData
     })
     const coordinates = await request.json()
     setCoordinates(coordinates)
     if (!!coordinates && !!canvasImage) {
-
       setShowImage(true)
+
+      //draw image here and add props
       context?.drawImage(canvasImage, 10, 10, 100, 100)
     }
 
@@ -77,12 +79,16 @@ const  App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        Hello Most Wanted World
-       <ImageInput onSelectImage={readImage}/>
-       <button onClick={onUploadPicture}>upload</button>
-       {showImage && <canvas ref={canvasRef} width={750} height={'100%'}/>}
-      </header>
+       {showImage ? (
+         <Poster>
+           <canvas ref={canvasRef} width={750} height={'100%'}/>
+         </Poster>) : (
+          <header className="App-header">
+            Hello Most Wanted World
+            <ImageInput onSelectImage={readImage}/>
+            <button onClick={onUploadPicture}>upload</button>
+          </header>)
+       }
     </div>
   );
 }
