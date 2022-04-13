@@ -22,7 +22,7 @@ const Poster: React.FC<Props> = ({ img, children }) => {
                 <p>DEAD</p> <p>OR</p> <p>ALIVE</p>
             </div>
             <div className="image">{children}</div>
-            {/* <img src={img} className="image" /> */}
+            <img src={img} className="image" />
             <div className='column'>
                 <p>REWARD</p>
                 <p>{reward}</p>

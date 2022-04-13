@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './App.css';
 import ImageInput from './Components/ImageInput/index';
 import Poster from './Components/Poster';
+import Igor from '../src/igorHat.png';
 
 type PropsLocation = {
   Poster:Coordinates
@@ -47,41 +48,55 @@ const  App = () => {
   }
 
   const onUploadPicture = async () => {
-    setShowImage(false)
     const canvas = canvasRef.current
     const context = canvas?.getContext('2d')
+    if (canvasRef.current) {
+      const context = canvasRef.current.getContext("2d");
+     if (context) {
+       context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+       let imgSrc = '';
+       const img = new Image();
+       img.src = Igor;
+       setCanvasImage(img)
+     }
+   }
+    setShowImage(true)
 
-    const blob = new Blob([selectedImage as BlobPart], {
-      type: 'image/png',
-    });
+    if (canvasImage) context?.drawImage(canvasImage, 10, 10, 100, 100)
+
+
+    // setShowImage(false)
+
+    // const blob = new Blob([selectedImage as BlobPart], {
+    //   type: 'image/png',
+    // });
     
-    const formData = new FormData();
-    formData.append("file", blob);
-    const request = await fetch("http://35.195.79.175/MostWanted", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': '*/*',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: formData
-    })
-    const coordinates = await request.json()
-    setCoordinates(coordinates)
-    if (!!coordinates && !!canvasImage) {
-      setShowImage(true)
+    // const formData = new FormData();
+    // formData.append("file", blob);
+    // const request = await fetch("http://35.195.79.175/MostWanted", {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     'Accept': '*/*',
+    //     'Access-Control-Allow-Origin': '*'
+    //   },
+    //   body: formData
+    // })
+    // const coordinates = await request.json()
+    // setCoordinates(coordinates)
+    // if (!!coordinates && !!canvasImage) {
+    //   setShowImage(true)
 
-      //draw image here and add props
-      context?.drawImage(canvasImage, 10, 10, 100, 100)
-    }
+    //   //draw image here and add props
+    //   context?.drawImage(canvasImage, 10, 10, 100, 100)
+    // }
 
   }
 
   return (
     <div className="App">
        {showImage ? (
-         <Poster>
-           <canvas ref={canvasRef} width={750} height={'100%'}/>
+         <Poster img={Igor}>
          </Poster>) : (
           <header className="App-header">
             Hello Most Wanted World
