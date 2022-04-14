@@ -6,21 +6,21 @@ import './overlay.css';
 
 const overlayImage = (img: any) => {
   const hatSize = {
-    width: '200px',
-    height: '200px',
+    width: '210px',
+    height: '210px',
   };
   const glassesSize = {
-    width: '300px',
-    height: '300px',
+    width: '200px',
+    height: '200px',
   };
   const mustacheSize = {
     width: '200px',
     height: '200px',
   };
 
-  const hatPosition = { top: 0, left: 0 } as React.CSSProperties;
-  const glassesPosition = { top: 0, left: 0 } as React.CSSProperties;
-  const mustachePosition = { top: 0, left: 0 } as React.CSSProperties;
+  const hatPosition = { top: -50, left: 80 } as React.CSSProperties;
+  const glassesPosition = { top: 80, left: 85 } as React.CSSProperties;
+  const mustachePosition = { top: 200, left: 90 } as React.CSSProperties;
   return (
     <>
       <div className="father">

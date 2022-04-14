@@ -36,7 +36,7 @@ const App = () => {
       if (context) {
         context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
         let imgSrc = '';
-        imgSrc = window.URL.createObjectURL(target.files[0]);
+        imgSrc = 'https://media.wired.com/photos/592676467034dc5f91beb80e/master/pass/MarkZuckerberg.jpg';
         const img = new Image();
         img.src = imgSrc;
         setCanvasImage(img);
@@ -75,8 +75,8 @@ const App = () => {
 
   return (
     <div className="App">
-      {showImage ? (
-        <Poster>
+      {true ? (
+        <Poster img="https://media.wired.com/photos/592676467034dc5f91beb80e/master/pass/MarkZuckerberg.jpg">
           <canvas ref={canvasRef} width={750} height={'100%'} />
         </Poster>
       ) : (

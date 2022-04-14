@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "RioGrande";
-  src: local("RioGrande"), url(./fonts/RioGrande.ttf) format("woff");
+  font-family: 'RioGrande';
+  src: local('RioGrande'), url(./fonts/RioGrande.ttf) format('woff');
 }
 * {
   margin: 0;
@@ -9,21 +9,15 @@
 .layout {
   /*background-color: #63411e;*/
   width: 100%;
-  height: 100vh;
-  font-family: "RioGrande";
+  /* height: 100vh; */
+  font-family: 'RioGrande';
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   filter: sepia(0.5);
   background: #704214;
   background: linear-gradient(to bottom, #704214 0%, #613305 100%);
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    color-stop(0%, #704214),
-    color-stop(100%, #613305)
-  );
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #704214), color-stop(100%, #613305));
   background: -webkit-linear-gradient(top, #704214 0%, #613305 100%);
   background: -moz-linear-gradient(top, #704214 0%, #613305 100%);
   background: -o-linear-gradient(top, #704214 0%, #613305 100%);
